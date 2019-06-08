@@ -29,16 +29,28 @@ class Builder extends Component {
   }
 
   addIngredient = idIngrediente => {
-    const newIngredients = this.state.ingredients;
+    const newIngredients = this.state.ingredients.slice();
     newIngredients.push(idIngrediente);
     this.setState({ingredients: newIngredients})
   }
 
+  removeIngredient = index => {
+    const newIngredients = this.state.ingredients.slice();
+    /* Remover el indice que nos indican: newIngredients.slice(index, 1) */
+    this.setState({ingredients: newIngredients})
+  };
+
   render() {
     return (
       <div>
-        <ControlPanel onAdd={x => {this.addIngredient(x)}} />
-        <Burger ingredients={this.state.ingredients} />
+        <ControlPanel
+          onAdd={x => {this.addIngredient(x)}}
+          onReset={() => {this.setState({ingredients: [] })}}
+        />
+        <Burger
+          ingredients={this.state.ingredients}
+          onIngredientClick={index => this.removeIngredient(index)}
+        />
         <h1>$ {this.getPrice()}</h1>
       </div>
     );

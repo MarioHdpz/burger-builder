@@ -3,7 +3,7 @@ import Ingredient from '../Ingredient';
 
 const Burger = props => {
     const burgerIngredients = props.ingredients.map(
-        ingredient => <Ingredient id={ingredient} />
+        (ingredient, index) => <Ingredient id={ingredient} />
     )
 
     return (
