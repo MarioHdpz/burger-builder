@@ -35,8 +35,9 @@ class Builder extends Component {
   }
 
   removeIngredient = index => {
+    console.log(index);
     const newIngredients = this.state.ingredients.slice();
-    /* Remover el indice que nos indican: newIngredients.slice(index, 1) */
+    newIngredients.splice(index, 1);
     this.setState({ingredients: newIngredients})
   };
 

@@ -12,7 +12,7 @@ const Ingredient = props => {
             )
         default:
             return (
-                <div className={props.id}></div>
+                <div onClick={() => props.onClick()} className={props.id}></div>
             )
     }
 }
