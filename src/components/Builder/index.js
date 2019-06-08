@@ -15,7 +15,7 @@ const prices = {
 
 class Builder extends Component {
   state = {
-    ingredients: ["salad", "meat", "meat"],
+    ingredients: [],
   };
 
   getPrice = () => {
@@ -28,10 +28,16 @@ class Builder extends Component {
     return price;
   }
 
+  addIngredient = idIngrediente => {
+    const newIngredients = this.state.ingredients;
+    newIngredients.push(idIngrediente);
+    this.setState({ingredients: newIngredients})
+  }
+
   render() {
     return (
       <div>
-        <ControlPanel />
+        <ControlPanel onAdd={x => {this.addIngredient(x)}} />
         <Burger ingredients={this.state.ingredients} />
         <h1>$ {this.getPrice()}</h1>
       </div>
