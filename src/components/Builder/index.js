@@ -15,16 +15,25 @@ const prices = {
 
 class Builder extends Component {
   state = {
-    ingredients: [],
-    price: 0
+    ingredients: ["salad", "meat", "meat"],
   };
+
+  getPrice = () => {
+    const pricesArray = this.state.ingredients.map(ingredient => {
+      return prices[ingredient];
+    })
+    const price = pricesArray.reduce((ant, act) => {
+      return ant + act;
+    }, 0)
+    return price;
+  }
 
   render() {
     return (
       <div>
         <ControlPanel />
         <Burger ingredients={this.state.ingredients} />
-        <h1>$ {this.state.price}</h1>
+        <h1>$ {this.getPrice()}</h1>
       </div>
     );
   }
